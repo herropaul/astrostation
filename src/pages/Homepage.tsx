@@ -67,8 +67,6 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
   const [isBackgroundModalOpen, setIsBackgroundModalOpen] = useState(false);
   const { grid } = useGrid();
 
-  console.log('hacker news', isHackerNewsShown, isHackerNewsToggled)
-
   return (
     <div className="h-screen">
       {isBackground == backgrounds.UNSPLASH && <UnsplashFooter />}
