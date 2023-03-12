@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FaSpotify } from "react-icons/fa";
-import { IoMusicalNotesOutline, IoCloseSharp } from "react-icons/io5";
+import { IoLogoHackernews, IoMusicalNotesOutline, IoCloseSharp } from "react-icons/io5";
 import { CgNotes } from "react-icons/cg";
 import { MdOutlineTimer, MdWbSunny, MdOutlineNoteAdd } from "react-icons/md";
 import { VscDebugRestartFrame } from "react-icons/vsc";
@@ -16,6 +16,7 @@ import {
   useToggleTasks,
   useSpotifyMusic,
   useToggleQuote,
+  useToggleHackerNews,
   useDarkToggleStore,
   useToggleStickyNote,
   useFullScreenToggleStore,
@@ -37,6 +38,7 @@ export const WidgetControlModal = ({ isVisible = false, onClose }) => {
   const { isQuoteShown, setIsQuoteShown } = useToggleQuote();
   const { isWidgetResetShown, setIsWidgetResetShown } = useToggleWidgetReset();
   const { isTwitchShown, setIsTwitchShown } = useToggleTwitch();
+  const { isHackerNewsShown, setIsHackerNewsShown } = useToggleHackerNews();
 
   const isDesktop = useMediaQuery("(min-width: 641px)");
 
@@ -263,6 +265,26 @@ export const WidgetControlModal = ({ isVisible = false, onClose }) => {
               Twitch
               <BsTwitch className="h-6 w-full" />
             </div>
+            <div
+              onClick={() =>
+                toggledToastNotification(
+                  isHackerNewsShown,
+                  setIsHackerNewsShown,
+                  "Hacker News Widget Added",
+                  750,
+                  "⏳"
+                )
+              }
+              className={
+                "grid cursor-pointer content-center justify-center gap-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800 md:dark:hover:bg-violet-500 " +
+                (isHackerNewsShown &&
+                  "dark:bg-violet-500 md:bg-gray-200 md:text-gray-800")
+              }
+            >
+              Hacker News
+              <IoLogoHackernews className="h-6 w-full" />
+            </div>
+
           </div>
         </div>
       </div>

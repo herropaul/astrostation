@@ -37,6 +37,8 @@ import {
   IGrid,
   ILockWidgets,
   ISideNavOrderStore,
+  IToggleHackerNews,
+  IPosHackerNews
 } from "./interfaces";
 
 /**
@@ -239,9 +241,9 @@ export const useStickyNote = create<IStickyNoteState>(
           stickyNotes: state.stickyNotes.map((note) =>
             note.id === id
               ? ({
-                  ...note,
-                  text: newText,
-                } as IStickyNote)
+                ...note,
+                text: newText,
+              } as IStickyNote)
               : note
           ),
         }));
@@ -256,10 +258,10 @@ export const useStickyNote = create<IStickyNoteState>(
           stickyNotes: state.stickyNotes.map((note) =>
             note.id === id
               ? ({
-                  ...note,
-                  stickyNotesPosX: X,
-                  stickyNotesPosY: Y,
-                } as IStickyNote)
+                ...note,
+                stickyNotesPosX: X,
+                stickyNotesPosY: Y,
+              } as IStickyNote)
               : note
           ),
         }));
@@ -319,9 +321,9 @@ export const useTask = create<ITaskState>(
           tasks: state.tasks.map((task) =>
             task.id === id
               ? ({
-                  ...task,
-                  description: newName,
-                } as ITask)
+                ...task,
+                description: newName,
+              } as ITask)
               : task
           ),
         }));
@@ -355,12 +357,12 @@ export const useTask = create<ITaskState>(
           tasks: state.tasks.map((task) =>
             task.id === id
               ? ({
-                  ...task,
-                  pomodoroCounter:
-                    task.pomodoroCounter < task.pomodoro
-                      ? task.pomodoroCounter + 1
-                      : task.pomodoro,
-                } as ITask)
+                ...task,
+                pomodoroCounter:
+                  task.pomodoroCounter < task.pomodoro
+                    ? task.pomodoroCounter + 1
+                    : task.pomodoro,
+              } as ITask)
               : task
           ),
         }));
@@ -370,9 +372,9 @@ export const useTask = create<ITaskState>(
           tasks: state.tasks.map((task) =>
             task.id === id
               ? ({
-                  ...task,
-                  pomodoro: newVal,
-                } as ITask)
+                ...task,
+                pomodoro: newVal,
+              } as ITask)
               : task
           ),
         }));
@@ -382,9 +384,9 @@ export const useTask = create<ITaskState>(
           tasks: state.tasks.map((task) =>
             task.id === id
               ? ({
-                  ...task,
-                  alerted: flag,
-                } as ITask)
+                ...task,
+                alerted: flag,
+              } as ITask)
               : task
           ),
         }));
@@ -654,6 +656,42 @@ export const usePosQuote = create<IPosQuote>(
     }
   )
 );
+
+/**
+ * Hacker News Section Store
+ * ---
+ * Handle the visibility of Hacker News feed
+ */
+
+export const useToggleHackerNews = create<IToggleHackerNews>(
+  persist(
+    (set,) => ({
+      isHackerNewsToggled: false,
+      setIsHackerNewsToggled: (isHackerNewsToggled) => set({ isHackerNewsToggled }),
+      isHackerNewsShown: false,
+      setIsHackerNewsShown: (isHackerNewsShown) => set({ isHackerNewsShown })
+    }),
+    {
+      name: "state_hackernews_section"
+    }
+  )
+)
+
+export const usePosHackerNews = create<IPosHackerNews>(
+  persist(
+    (set, _) => ({
+      hackernewsPosX: 804,
+      hackernewsPosY: 436,
+      setHackerNewsPos: (X, Y) => set({ hackernewsPosX: X, hackernewsPosY: Y }),
+      setHackerNewsPosDefault: () =>
+        set(() => ({ hackernewsPosX: 804, hackernewsPosY: 436 })),
+    }),
+    {
+      name: "set_hackernews_position",
+    }
+  )
+);
+
 
 /**
  * Reset Widgets Section Store

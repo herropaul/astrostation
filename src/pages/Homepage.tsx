@@ -16,6 +16,8 @@ import {
   usePosTwitch,
   useGrid,
   useSetBackground,
+  useToggleHackerNews,
+  usePosHackerNews
 } from "@Store";
 import { Player } from "@Components/Player/Player";
 import { Timer } from "@Components/Timer/Timer";
@@ -35,6 +37,8 @@ import { Quotes } from "@App/components/Quotes/Quotes";
 import useMediaQuery from "@Utils/hooks/useMediaQuery";
 import { TwitchStream } from "@Components/Twitch/TwitchStream";
 import { UnsplashFooter } from "../components/Nav/UnsplashFooter";
+import { HackerNews } from '../components/HackerNews/HarckerNews'
+import clsx from "clsx";
 
 export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
   const { isMusicToggled, isMusicShown } = useToggleMusic();
@@ -44,6 +48,7 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
   const { isStickyNoteShown } = useToggleStickyNote();
   const { isQuoteToggled, isQuoteShown } = useToggleQuote();
   const { isTwitchToggled, isTwitchShown } = useToggleTwitch();
+  const { isHackerNewsToggled, isHackerNewsShown } = useToggleHackerNews();
 
   // Position hooks
   const { taskPosX, taskPosY, setTaskPos } = usePosTask();
@@ -53,6 +58,7 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
   const { timerPosX, timerPosY, setTimerPos } = usePosTimer();
   const { stickyNotes, setStickyNotesPos } = useStickyNote();
   const { twitchPosX, twitchPosY, setTwitchPos } = usePosTwitch();
+  const { hackernewsPosX, hackernewsPosY, setHackerNewsPos } = usePosHackerNews();
   const isDesktop = useMediaQuery("(min-width: 641px)");
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isConfigureWidgetModalOpen, setIsConfigureWidgetModalOpen] =
@@ -60,6 +66,8 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
   const { isBackground } = useSetBackground();
   const [isBackgroundModalOpen, setIsBackgroundModalOpen] = useState(false);
   const { grid } = useGrid();
+
+  console.log('hacker news', isHackerNewsShown, isHackerNewsToggled)
 
   return (
     <div className="h-screen">
@@ -128,6 +136,9 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
           </div>
           <div className={`${isQuoteToggled ? "block" : "hidden"}`}>
             <Quotes />
+          </div>
+          <div className={clsx(isHackerNewsToggled ? "block" : "hidden")}>
+            <HackerNews />
           </div>
         </div>
       ) : (
@@ -208,6 +219,17 @@ export const HomePage = ({ backgrounds }: { backgrounds: any }) => {
           >
             <TwitchStream />
           </DWrapper>
+          <DWrapper
+            toggleHook={isHackerNewsToggled && isHackerNewsShown}
+            defaultX={hackernewsPosX}
+            defaultY={hackernewsPosY}
+            setPosition={setHackerNewsPos}
+            isSticky={false}
+            gridValues={grid}
+          >
+            <HackerNews />
+          </DWrapper>
+
         </>
       )}
     </div>
