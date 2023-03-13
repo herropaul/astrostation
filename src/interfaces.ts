@@ -272,3 +272,15 @@ export interface ISideNavOrderStore {
   sideNavOrder: number[];
   setSideNavOrder: (sideNavOrder: number[]) => void;
 }
+
+
+export enum optionsHackerNews { TOP, NEW, BEST, ASK, SHOWS, JOBS };
+
+export interface IHackerNewsFeed {
+  // feed: optionsHackerNews;
+  feed: string;
+  setFeed: (feed: string) => void;
+  setDefaultFeed: () => void;
+}
+
+
