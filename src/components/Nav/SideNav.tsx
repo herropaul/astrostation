@@ -28,6 +28,7 @@ import {
   useToggleWidgetReset,
   useToggleTwitch,
   useSideNavOrderStore,
+  useOnHoverStickyNote,
 } from "@Store";
 import { useState, useEffect } from "react";
 import useSetDefault from "@App/utils/hooks/useSetDefault";
@@ -50,6 +51,7 @@ export const SideNav = () => {
 
   const { isTimerShown } = useToggleTimer();
   const { isStickyNoteShown } = useToggleStickyNote();
+  const { isOnHoverStickyNote } = useOnHoverStickyNote();
   const { isTasksShown } = useToggleTasks();
   const { isMusicShown } = useToggleMusic();
   const { isSpotifyShown } = useSpotifyMusic();
