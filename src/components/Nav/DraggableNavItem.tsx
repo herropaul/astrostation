@@ -10,6 +10,14 @@ export const DraggableNavItem = ({
   item: any;
 }) => {
   const { stickyNotes } = useStickyNote();
+
+  const onHoverStickyNote = () => {
+    if (item.tooltipTitle == "Sticky Note") {
+      console.log("hovering over sticky note");
+    }
+    return;
+  };
+
   return (
     <div
       className={`${
@@ -26,6 +34,7 @@ export const DraggableNavItem = ({
             item.toggleIcon
           )
         }
+        onMouseOver={onHoverStickyNote}
         toggled={item.isToggled}
         shown={item.isShown}
       >

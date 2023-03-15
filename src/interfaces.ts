@@ -78,6 +78,11 @@ export interface IToggleStickyNote {
   setIsStickyNoteShown: (isStickyNoteShown: boolean) => void;
 }
 
+export interface IOnHoverStickyNote {
+  isOnHoverStickyNote: boolean;
+  setIsOnHoverStickyNote: (isOnHoverStickyNote: boolean) => void;
+}
+
 export interface ITask {
   id: number;
   description: string;

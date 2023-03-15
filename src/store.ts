@@ -13,6 +13,7 @@ import {
   IStickyNote,
   IStickyNoteState,
   IToggleStickyNote,
+  IOnHoverStickyNote,
   ITask,
   ITaskState,
   ISongTask,
@@ -213,6 +214,19 @@ export const useToggleStickyNote = create<IToggleStickyNote>(
     }),
     {
       name: "state_sticky_note",
+    }
+  )
+);
+
+export const useOnHoverStickyNote = create<IOnHoverStickyNote>(
+  persist(
+    (set, _) => ({
+      isOnHoverStickyNote: false,
+      setIsOnHoverStickyNote: (isOnHoverStickyNote) =>
+        set({ isOnHoverStickyNote }),
+    }),
+    {
+      name: "hover_state_sticky_note",
     }
   )
 );
